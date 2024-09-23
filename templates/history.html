@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Electricity Bill History</title>
+</head>
+<body>
+    <h1>Electricity Bill History</h1>
+    <table border="1">
+        <tr>
+            <th>Month</th>
+            <th>Usage (kWh)</th>
+            <th>Bill (VND)</th>
+        </tr>
+        {% for month, data in history.items() %}
+        <tr>
+            <td>{{ month }}</td>
+            <td>{{ data['usage'] }}</td>
+            <td>{{ data['bill'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/electricity">Back to electricity</a> |
+    <a href="/logout">Logout</a>
+</body>
+</html>

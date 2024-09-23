@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Encryption Tool</title>
+</head>
+<body>
+    <h1>Text Encryption Tool</h1>
+    <form method="POST" action="/">
+        <label for="text">Text:</label>
+        <input type="text" id="text" name="text" required>
+        <br><br>
+
+        <label for="method">Select Encryption Method:</label>
+        <select id="method" name="method">
+            <option value="caesar">Caesar</option>
+            <option value="affine">Affine</option>
+            <option value="aes">AES</option>
+            <option value="des">DES</option>
+        </select>
+        <br><br>
+
+        <!-- Caesar Shift Input -->
+        <div id="caesar-options" style="display: none;">
+            <label for="shift">Shift (for Caesar):</label>
+            <input type="number" id="shift" name="shift" value="3">
+            <br><br>
+        </div>
+
+        <!-- Affine a and b Inputs -->
+        <div id="affine-options" style="display: none;">
+            <label for="a">a (for Affine):</label>
+            <input type="number" id="a" name="a" value="5">
+            <br><br>
+            <label for="b">b (for Affine):</label>
+            <input type="number" id="b" name="b" value="8">
+            <br><br>
+        </div>
+
+        <button type="submit">Encrypt</button>
+    </form>
+
+    <h2>Result:</h2>
+    {% if result %}
+        <p>Encrypted text using {{ method }}: {{ result }}</p>
+    {% endif %}
+
+    <script>
+        document.getElementById("method").addEventListener("change", function() {
+            var method = this.value;
+            document.getElementById("caesar-options").style.display = method === "caesar" ? "block" : "none";
+            document.getElementById("affine-options").style.display = method === "affine" ? "block" : "none";
+        });
+    </script>
+</body>
+</html>
